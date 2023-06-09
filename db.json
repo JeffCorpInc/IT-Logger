@@ -1,5 +1,5 @@
 {
-    "Log": [
+    "logs": [
         {
             "id": 1,
             "message":  "Created Home Page",
@@ -22,5 +22,16 @@
             "developers": "Haider Mehdi"
         }
     ],
-    "Developers": []
+    "Developers": [
+        {
+            "id": 1,
+            "firstName": "Mehdi",
+            "lastName": "Jaffari"
+        },
+        {
+            "id": 2,
+            "firstName": "Haider",
+            "lastName": "Mehdi"
+        }
+    ]
 }
