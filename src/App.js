@@ -8,6 +8,9 @@ import SearchBar from './Components/Layouts/SearchBar';
 import Logs from './Components/logs/Logs';
 import Addbtn from './Components/Layouts/Addbtn';
 import AddLogModal from './Components/logs/AddLogModal';
+import EditLogModal from './Components/logs/EditLogModal';
+import AddDevModal from './Components/Developers/AddDevModal';
+import DevListModal from './Components/Developers/DevListModal';
 
 import './App.css';
 
@@ -32,6 +35,9 @@ const App = () => {
       <div className='container'>
         <Addbtn/>
         <AddLogModal/>
+        <EditLogModal />
+        <AddDevModal/>
+        <DevListModal/>
         <Logs/>
       </div>
 

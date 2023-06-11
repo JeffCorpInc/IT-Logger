@@ -4,7 +4,7 @@
 
 .Navbar{
 
-    background-color: #2B2A4C;
+    background-color: #4a148c;
 }
 .log-history{
 
@@ -15,16 +15,19 @@
 
     font-size: 17px;
 }
+
+/* buttons */
 .add-btn{
 
-    background-color: #2B2A4C;
+    background-color: #4a148c;
 }
 .add-lst-dev,.add-dev{
-    background-color: #edbdae;
+    background-color: gray;
 }
 .srch-btn,.close-btn{
-    color: #edbdae;
+    color: gray ;
 }
 .del-btn{
     color: #ff1818;
 }
+

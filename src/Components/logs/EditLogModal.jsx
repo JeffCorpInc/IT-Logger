@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import M from 'materialize-css';
 
-const AddLogBtn = () => {
+const EditLogBtn = () => {
 
   const [message , setmessage] = useState('');
   const [attention , setattention] = useState('');
@@ -25,9 +25,9 @@ const AddLogBtn = () => {
 
   return (
 
-    <div id='add-log-modal' className='modal'>
+    <div id='edit-log-modal' className='modal'>
       <div className="modal-content">
-        <h4>Enter Developer Log</h4>
+        <h4>Edit Developer Log</h4>
 
         {/* Add Log Modal | Row 1 */}
         <div className="row">
@@ -87,4 +87,4 @@ const AddLogBtn = () => {
   )
 }
 
-export default AddLogBtn;
+export default EditLogBtn;

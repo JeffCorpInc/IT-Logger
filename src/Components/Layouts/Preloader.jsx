@@ -4,8 +4,8 @@ const Preloader = () => {
 
   return (
 
-        <div className="progress grey-text">
-            <div className="indeterminate grey-text"></div>
+        <div className="progress">
+            <div className="indeterminate"></div>
         </div>
         
     )
