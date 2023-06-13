@@ -1,38 +1,22 @@
-import React ,{useState, useEffect} from 'react'
+import React ,{useEffect} from 'react';
+import { connect } from 'react-redux';
 import LogsItem from './LogsItem';
 import Preloader from '../Layouts/Preloader';
+import PropTypes from 'prop-types';
+import {getLogs} from "../Actions/logActions";
 
-const Logs = () => {
-
-    // for local state management
-    const [logs, setLogs] = useState([]);
-    const [loading, setLoading] = useState(false)
+const Logs = ({ log: {logs,loading}, getLogs }) => {
 
     useEffect (() => {
 
         getLogs();
         
+       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
 
-    // get logs from the API
-    const getLogs = async () => {
-
-        // Set Loading
-        setLoading(true);
-
-        // getting logs from the API using fetch method | /logs is an endpoint
-        const res = await fetch('/logs');
-        // data is converted into json format
-        const data = await res.json();
-
-        setLogs(data);
-        setLoading(false);
-
-    }
-
     // if loading is true apply preloader
-    if(loading){
+    if(loading || logs === null){
          
         return <Preloader/>
     }
@@ -63,4 +47,18 @@ const Logs = () => {
   )
 }
 
-export default Logs;
+Logs.prototype = {
+
+    log: PropTypes.object.isRequired,
+    getLogs: PropTypes.func.isRequired
+}
+
+// we add this because we wanted to add state in this component from the app level state
+const mapStateToProps = state => ({
+
+    log: state.log
+})
+
+
+// 2 values in connect function | first properties, 2nd actions to run
+export default connect( mapStateToProps, {getLogs} )(Logs);

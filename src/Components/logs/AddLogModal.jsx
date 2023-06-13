@@ -1,27 +1,39 @@
 import React, { useState } from 'react'
 import M from 'materialize-css';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { addLog } from '../Actions/logActions';
 
-const AddLogBtn = () => {
+const AddLogBtn = ({addLog}) => {
 
   const [message , setmessage] = useState('');
   const [attention , setattention] = useState('');
   const [developer , setdeveloper] = useState('');
 
   // funtions || Rasing Alert
-  const onSubmit =() => {
+  const onSubmit =(e) => {
 
     if(message === '' || developer === '') {
 
       M.toast({ html: 'Please Provide Values'})
     } else{
-  
-      console.log(message,attention,developer);
+
+      // New Log Object to UI
+      const newLog = {
+        message,
+        attention,
+        developer,
+        date: new Date()
+      }
+
+      addLog(newLog);
+      M.toast({ html: 'New Log Added'})
+
       setmessage('');
       setattention(false);
       setdeveloper('');
     }
   }
-
 
   return (
 
@@ -87,4 +99,9 @@ const AddLogBtn = () => {
   )
 }
 
-export default AddLogBtn;
+AddLogBtn.prototype = {
+
+  addLog: PropTypes.func.isRequired,
+}
+
+export default connect(null,{addLog})(AddLogBtn);

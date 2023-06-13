@@ -1,11 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import M from 'materialize-css';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { updateLog } from '../Actions/logActions';
 
-const EditLogBtn = () => {
+
+const EditLogBtn = ({ updateLog, current }) => {
 
   const [message , setmessage] = useState('');
   const [attention , setattention] = useState('');
   const [developer , setdeveloper] = useState('');
+
+  useEffect(() => {
+
+      if(current){
+        setmessage(current.message)
+        setattention(current.attention)
+        setdeveloper(current.developer)
+      }
+  }, [current])
 
   // funtions || Rasing Alert
   const onSubmit =() => {
@@ -15,7 +28,19 @@ const EditLogBtn = () => {
       M.toast({ html: 'Please Provide Values'})
     } else{
   
-      console.log(message,attention,developer);
+      // Log Updated to UI
+      const updatedLog = {
+
+        id: current.id,
+        message,
+        attention,
+        developer,
+        date: new Date()
+      }
+
+      updateLog(updatedLog);
+      M.toast({ html: 'Log Updated'})
+
       setmessage('');
       setattention(false);
       setdeveloper('');
@@ -87,4 +112,13 @@ const EditLogBtn = () => {
   )
 }
 
-export default EditLogBtn;
+EditLogBtn.prototype = {
+  current: PropTypes.object.isRequired,
+  updateLog: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({
+  current: state.log.current
+})
+
+export default connect(mapStateToProps, {updateLog})(EditLogBtn);

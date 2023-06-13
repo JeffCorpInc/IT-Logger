@@ -1,7 +1,5 @@
 // Main App component, where all the component will be displayed
 
-
-
 // imports
 import React, { Fragment, useEffect } from 'react';
 import SearchBar from './Components/Layouts/SearchBar';
@@ -11,6 +9,8 @@ import AddLogModal from './Components/logs/AddLogModal';
 import EditLogModal from './Components/logs/EditLogModal';
 import AddDevModal from './Components/Developers/AddDevModal';
 import DevListModal from './Components/Developers/DevListModal';
+import store from './store';
+import { Provider } from 'react-redux';
 
 import './App.css';
 
@@ -28,20 +28,22 @@ const App = () => {
   });
 
   return (
+    <Provider store={store}> 
+      <Fragment>
 
-    <Fragment>
-      {/* search bar Component */}
-      <SearchBar/>
-      <div className='container'>
-        <Addbtn/>
-        <AddLogModal/>
-        <EditLogModal />
-        <AddDevModal/>
-        <DevListModal/>
-        <Logs/>
-      </div>
-
-    </Fragment>
+        {/* search bar Component */}
+        <SearchBar/>
+        <div className='container'>
+          <Addbtn/>
+          <AddLogModal/>
+          <EditLogModal />
+          <AddDevModal/>
+          <DevListModal/>
+          <Logs/>
+        </div>
+        
+      </Fragment>
+    </Provider>
   );
 }
 
